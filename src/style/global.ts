@@ -33,7 +33,10 @@ export const GlobalStyle = createGlobalStyle`
 		line-height: 1;
 		background: #f2f3f4;
 	}
-
+	iframe {
+		display: none;
+		visibility: hidden;
+	}
 	ol, ul {
 		list-style: none;
 	}

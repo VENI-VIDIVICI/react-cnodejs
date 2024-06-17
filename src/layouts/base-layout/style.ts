@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Layout = styled.div`
   min-height: 100vh;
-  padding-top: 92px;
+  padding-top: ${(props: { top: number }) => props.top}px;
 `
 
 export const Fixed = styled.div`

@@ -40,6 +40,7 @@ const TagUI = styled.label<{ color: string }>`
   font-weight: bold;
   background-color: ${props => props.color};
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
 `
 
 const Tag: React.FC<IProps> = (props: IProps) => {

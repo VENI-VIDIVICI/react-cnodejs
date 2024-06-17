@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useHistory } from 'react-router-dom'
 import Image from 'components/image'
 import Tag from 'components/tag'
@@ -16,13 +16,12 @@ const Card: React.FC<IProps> = (props: IProps) => {
   const { data, onClick } = props
   const history = useHistory()
 
-  const genTagType = () => {
+  const genTagType = useMemo(() => {
     if (data.top) return 'top'
     if (data.good) return 'good'
-
     return data.tab
-  }
-
+  }, [data])
+  
   const visitUser = (e: React.MouseEvent, name: string) => {
     e.stopPropagation()
     history.push(`/user/${name}`)
@@ -31,7 +30,7 @@ const Card: React.FC<IProps> = (props: IProps) => {
   return (
     <CardWrapper onClick={onClick}>
       <CardHead>
-        <Tag type={genTagType()}></Tag>
+        <Tag type={genTagType}></Tag>
         <h4>{ data.title }</h4>
       </CardHead>
 

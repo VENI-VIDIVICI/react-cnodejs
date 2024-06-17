@@ -1,44 +1,37 @@
-import React from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import Header from 'components/header'
-import Tabbar, { Tabber } from 'components/tabbar'
-import Topic from 'view/topic'
-import Article from 'view/article'
-import User from 'view/user'
-import About from 'view/about'
-import NotFound from 'view/not-found'
-import Layout, { Fixed, Main } from './style'
-
-const navList: Tabber[] = [
-  { name: '全部', route: '/topic/all' },
-  { name: '精华', route: '/topic/good' },
-  { name: '分享', route: '/topic/share' },
-  { name: '问答', route: '/topic/ask' },
-  { name: '招聘', route: '/topic/job' },
-  { name: '关于', route: '/about' },
+import Header from "components/header";
+import Topic from "view/topic";
+import Article from "view/article";
+import User from "view/user";
+import About from "view/about";
+import NotFound from "view/not-found";
+import Layout, { Fixed, Main } from "./style";
+import NavLink from "components/nav-link";
+const list = [
+  { name: "首页", route: "/topic/all" },
+  { name: "返回", route: "/about" },
 ]
-
 const BaseLayout = () => {
   return (
-    <Layout>
+    <Layout top={92}>
       <Fixed>
-        <Header logo={require('assets/logo.svg')} />
-        <Tabbar value={navList} />
+        <Header logo={require("assets/logo.svg")} />
+        <NavLink list={list} />
       </Fixed>
-
-      <Main>
-        <Switch>
-          <Redirect from={'/'} to={'/topic/all'} exact />
-          <Route path={'/topic/:tag'} component={Topic} exact />
-          <Route path={'/article/:id'} component={Article} exact />
-          <Route path={'/user/:name'} component={User} exact />
-          <Route path={'/about'} component={About} exact />
-          <Route path={'*'} component={NotFound} />
-        </Switch>
-      </Main>
+      <Switch>
+        <Redirect from={"/"} to={"/topic/all"} exact />
+        <Route path={"/topic/:tag"} component={Topic} exact />
+        <Main>
+          <Route path={"/article/:id"} component={Article} exact />
+          <Route path={"/user/:name"} component={User} exact />
+          <Route path={"/about"} component={About} exact />
+          <Route path={"*"} component={NotFound} />
+        </Main>
+      </Switch>
     </Layout>
-  )
-}
+  );
+};
 
-export default React.memo(BaseLayout)
+export default React.memo(BaseLayout);
